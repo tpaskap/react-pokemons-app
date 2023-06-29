@@ -27,9 +27,11 @@ export default class PokemonService {
       .catch(error => this.handleError(error));
     }
 
-    return new Promise(resolve => {    
-      resolve(this.pokemons.find(pokemon => id === pokemon.id));
-    }); 
+    return new Promise(resolve => {
+      const foundPokemon = this.pokemons.find(pokemon => id === pokemon.id);
+      resolve(foundPokemon || null);
+    });
+
   }
 
   static updatePokemon(pokemon: Pokemon): Promise<Pokemon> {
